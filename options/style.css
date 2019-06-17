@@ -1,0 +1,56 @@
+.wrapper {
+    width: 350px;
+}
+
+.default_item {
+    font-weight: 700;
+}
+
+.default_item .item_alias::before {
+    content: '[默认] ';
+}
+
+table {
+    width: 100%;
+}
+
+tr {
+    height: 50px;
+}
+
+.item_tooltip {
+    opacity: 0;
+}
+
+tr:hover {
+    background-color: rebeccapurple;
+}
+
+tr:hover .item_tooltip {
+    opacity: 1;
+}
+
+tr.default_item .tool_default {
+    visibility: hidden;
+}
+
+.in_edit input {
+    animation: blink 1s ease-in-out;
+}
+
+@keyframes blink {
+    30% {
+        background-color: yellow;
+    }
+    100% {
+        background-color: #ffffff;
+    }
+}
+
+#cancel_button {
+    display: none;
+}
+
+.in_edit #cancel_button {
+    display: inline-block;
+}

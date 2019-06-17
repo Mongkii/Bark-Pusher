@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="wrapper">
+<label for="auto_copy_checkbox">发送文字时，自动复制到 iOS 剪贴板</label>
+<input type="checkbox" id="auto_copy_checkbox">
+<div class="divider"></div>
+<table>
+    <thead>
+    <tr>
+        <th>设备名称</th>
+        <th>设备 URL</th>
+        <th></th>
+    </tr>
+    </thead>
+    <tbody id="device_table"></tbody>
+</table>
+<form id="device_form">
+    <h2 id="device_form_title">添加设备</h2>
+    <input type="text" id="alias_input" placeholder="设备名称" required>
+    <input type="url" id="url_input" placeholder="URL 地址，形如 http://abc.com/myurl/" pattern="https?:\/\/.+\/.+\/$"
+           title="（注意结尾必须有反斜杠）" required>
+    <button type="submit" id="submit_button">添加</button>
+    <button type="button" id="cancel_button">取消</button>
+</form>
+<div class="footer">
+    <a href="../popup/index.html">返回</a>
+</div>
+<script src="../common/index.js"></script>
+<script src="script.js"></script>
+</body>
+</html>

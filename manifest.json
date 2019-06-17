@@ -1,0 +1,26 @@
+{
+  "manifest_version": 2,
+  "name": "Bark",
+  "version": "1.0.0",
+  "homepage_url": "https://github.com/Mongkii/",
+  "browser_action": {
+    "default_icon": "img/icon.png",
+    "default_title": "这是一个示例Chrome插件",
+    "default_popup": "popup/index.html"
+  },
+  "permissions": [
+    "contextMenus",
+    "activeTab",
+    "clipboardRead",
+    "storage"
+  ],
+  "background": {
+    "persistent": false,
+    "page": "background/index.html"
+  },
+  "options_page": "options/index.html",
+  "options_ui": {
+    "chrome_style": true,
+    "page": "options/index.html"
+  }
+}
