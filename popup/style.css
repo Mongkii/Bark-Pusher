@@ -1,6 +1,17 @@
+button {
+    height: 35px;
+    border-radius: 10px;
+}
+
+i {
+    display: inline-block;
+    margin-right: 6px;
+    transform: scale(1.5); /* 使用 transform 放大而非改字号，以使 iconfont 保持垂直居中 */
+}
+
 .wrapper {
     width: 350px;
-    margin: 15px 10px;
+    margin: 15px 10px 10px;
 }
 
 .target_selector_wrapper {
@@ -17,10 +28,20 @@
 .shortcuts {
     display: flex;
     justify-content: space-between;
+    margin-bottom: 10px;
 }
 
 .shortcuts button {
-    width: 48%;
+    width: 170px;
+    color: #ffffff;
+}
+
+#send_page {
+    background-color: #3d87dc;
+}
+
+#send_clip {
+    background-color: #60a604;
 }
 
 #clipboard_area {
@@ -31,22 +52,21 @@
 
 .custom_input {
     display: flex;
+    margin-bottom: 10px;
 }
 
 #custom_textarea {
     flex: 1;
-    height: 200px;
+    height: 180px;
+    padding: 5px;
     resize: vertical;
-   /* overflow-y: scroll; 默认样式似乎更自然*/
+    /* overflow-y: scroll; 默认样式似乎更自然*/
 }
 
 #send_custom {
     align-self: flex-end;
-    width: 80px;
+    width: 70px;
     margin-left: 10px;
-}
-
-.footer{
-    text-align: right;
-    border-top: 1px solid #333333;
+    background-color: #d92323;
+    color: #ffffff;
 }

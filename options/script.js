@@ -10,14 +10,70 @@ const footer = document.querySelector('.footer');
 
 let url_before_edit = '';
 
-const initialize = async () => {
-    if (location.hash === '#fromPopup') {
-        footer.removeAttribute('hidden');
-    }
-    auto_copy_checkbox.checked = await isAutoCopy();
-    await refreshDeviceList();
+const type = {
+    DEFAULT: 'tool_default',
+    EDIT: 'tool_edit',
+    DELETE: 'tool_delete'
 };
 
+// Storage 相关操作
+const setDefault = url => new Promise(resolve => {
+    chrome.storage.sync.set({defaultDevice: url}, () => {
+        resolve();
+    });
+});
+
+const addDevice = device_to_add => new Promise(resolve => {
+    chrome.storage.sync.get(['deviceList', 'defaultDevice'], storage => {
+        let device_list = storage.deviceList.concat(),
+            default_device = storage.defaultDevice;
+        const exist_index = device_list.findIndex(item => item.url === device_to_add.url),
+            add_index = exist_index + 1 ? exist_index : device_list.length; // 简易的去重
+        device_list[add_index] = device_to_add;
+        if (device_list.length === 1 || default_device === '') {
+            default_device = device_list[0].url;
+        }
+        chrome.storage.sync.set({deviceList: device_list, defaultDevice: default_device}, () => {
+            resolve();
+        });
+    });
+});
+
+const removeDevice = remove_url => new Promise(resolve => {
+    chrome.storage.sync.get(['deviceList', 'defaultDevice'], storage => {
+        let device_list = storage.deviceList.concat(),
+            default_device = storage.defaultDevice;
+        const rm_index = device_list.findIndex(item => item.url === remove_url);
+        if (rm_index + 1) {
+            device_list.splice(rm_index, 1);
+        }
+        if (default_device === remove_url) {
+            default_device = (device_list[0] && device_list[0].url) || '';
+        }
+        chrome.storage.sync.set({deviceList: device_list, defaultDevice: default_device}, () => {
+            resolve();
+        });
+    });
+});
+
+const editDevice = (edit_url, new_info) => new Promise(resolve => {
+    chrome.storage.sync.get(['deviceList', 'defaultDevice'], storage => {
+        let device_list = storage.deviceList.concat(),
+            default_device = storage.defaultDevice;
+        const edit_index = device_list.findIndex(item => item.url === edit_url);
+        if (edit_index + 1) {
+            device_list[edit_index] = new_info;
+        }
+        if (default_device === edit_url) {
+            default_device = new_info.url;
+        }
+        chrome.storage.sync.set({deviceList: device_list, defaultDevice: default_device}, () => {
+            resolve();
+        });
+    });
+});
+
+// 页面事件
 const refreshDeviceList = async () => {
     const device_list = await getDeviceList(),
         default_device = await getDefaultDevice();
@@ -31,7 +87,7 @@ const refreshDeviceList = async () => {
         td_alias.className = 'item_alias';
         td_url.textContent = url;
         td_url.className = 'item_url';
-        tooltip.innerHTML = `<button class=${tool_type.DEFAULT} title="设为默认"><i class="iconfont icon-shoucang"></i></button><button class=${tool_type.EDIT} title="编辑设备"><i class="iconfont icon-bianji"></i></button><button class=${tool_type.DELETE} title="删除设备"><i class="iconfont icon-shanchu"></i></button>`;
+        tooltip.innerHTML = `<button class=${type.DEFAULT} title="设为默认"><i class="iconfont icon-shoucang"></i></button><button class=${type.EDIT} title="编辑设备"><i class="iconfont icon-bianji"></i></button><button class=${type.DELETE} title="删除设备"><i class="iconfont icon-shanchu"></i></button>`;
         tooltip.className = 'item_tooltip';
         tr.appendChild(td_alias);
         tr.appendChild(td_url);
@@ -60,6 +116,15 @@ const leaveEditMode = () => {
 
 };
 
+const initialize = async () => {
+    if (location.hash === '#fromPopup') {
+        footer.removeAttribute('hidden');
+    }
+    auto_copy_checkbox.checked = await isAutoCopy();
+    await refreshDeviceList();
+};
+
+// 事件绑定
 auto_copy_checkbox.addEventListener('change', function () {
     chrome.storage.sync.set({isAutoCopy: this.checked});
 });
@@ -72,7 +137,7 @@ device_form.addEventListener('submit', async () => {
         await editDevice(url_before_edit, device_info);
         leaveEditMode();
     }
-    // submit 行为会自动刷新页面，无需插入 refreshDeviceList 函数
+    await refreshDeviceList(); // submit 事件自带的刷新网页有时不会触发，因此加入强制触发
 });
 
 cancel_button.addEventListener('click', () => {
@@ -84,7 +149,7 @@ device_tbody.addEventListener('click', async event => {
     if (event.target) {
         if (event.target.nodeName.toUpperCase() === 'BUTTON') {
             tool_button = event.target;
-        } else if (event.target.nodeName.toUpperCase()==='I') {
+        } else if (event.target.nodeName.toUpperCase() === 'I') {
             tool_button = event.target.parentNode;
         }
     }
@@ -93,14 +158,14 @@ device_tbody.addEventListener('click', async event => {
             alias = tr.querySelector('.item_alias').textContent,
             url = tr.querySelector('.item_url').textContent;
         switch (tool_button.className) {
-            case tool_type.DEFAULT:
+            case type.DEFAULT:
                 await setDefault(url);
                 await refreshDeviceList();
                 break;
-            case tool_type.EDIT:
+            case type.EDIT:
                 enterEditMode(alias, url);
                 break;
-            case tool_type.DELETE:
+            case type.DELETE:
                 await removeDevice(url);
                 await refreshDeviceList();
                 break;

@@ -12,28 +12,28 @@
 
 .icon-computer:before {
     content: "\e6eb";
-  }
-  
-  .icon-setup:before {
+}
+
+.icon-setup:before {
     content: "\e728";
-  }
-  
-  .icon-task:before {
+}
+
+.icon-task:before {
     content: "\e732";
-  }
-  
-  .icon-undo:before {
+}
+
+.icon-undo:before {
     content: "\e739";
-  }
-  
-  .icon-bianji:before {
+}
+
+.icon-bianji:before {
     content: "\e872";
-  }
-  
-  .icon-shanchu:before {
+}
+
+.icon-shanchu:before {
     content: "\e879";
-  }
-  
-  .icon-shoucang:before {
+}
+
+.icon-shoucang:before {
     content: "\e87d";
-  }
+}

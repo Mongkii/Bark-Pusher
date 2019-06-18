@@ -1,11 +1,22 @@
 .wrapper {
     width: 350px;
-    margin: 15px 10px;
+    margin: 15px 10px 10px;
 }
+
+/*.auto_copy_wrapper {
+    padding-bottom: 10px;
+    border-bottom: 1px solid #cccccc;
+}*/
 
 #auto_copy_checkbox {
     margin: 0;
     vertical-align: middle;
+}
+
+.option_title {
+    margin: 15px 0 6px;
+    font-size: 1.3em;
+    font-weight: 700;
 }
 
 .device_table {
@@ -14,6 +25,7 @@
     overflow-wrap: break-word;
     table-layout: fixed;
     border-collapse: collapse;
+    color: #666666;
 }
 
 .device_table td {
@@ -38,28 +50,30 @@
     box-sizing: border-box;
     width: 20px;
     height: 20px;
-    padding: 0;
     margin-left: 4px;
     background-color: #ffffff;
     border: 1px solid #aaaaaa;
     border-radius: 5px;
-    outline: none;
-}
-
-.item_tooltip button:active {
-    transform: scale(0.9);
 }
 
 .tool_default:hover {
-    color: orange;
+    color: #ffa500;
 }
 
 .tool_edit:hover {
-    color: dodgerblue;
+    color: #1e90ff;
 }
 
 .tool_delete:hover {
-    color: red;
+    color: #ff0000;
+}
+
+.device_thead {
+    border-bottom: 1px solid #cccccc;
+}
+
+.device_thead th {
+    padding-bottom: 4px;
 }
 
 #device_tbody tr:hover {
@@ -82,6 +96,53 @@
     visibility: hidden;
 }
 
+#device_form {
+    margin-bottom: 10px;
+}
+
+#device_form_title {
+    margin: 6px 0 6px;
+    font-size: 1.2em;
+    font-weight: 700;
+}
+
+#device_form input {
+    display: block;
+    box-sizing: border-box;
+    width: 100%;
+    margin-bottom: 6px;
+    padding: 2px 5px;
+}
+
+#alias_input {
+    margin-bottom: 6px;
+}
+
+.button_group {
+    text-align: right;
+}
+
+.button_group button {
+    width: 70px;
+    height: 30px;
+    border-radius: 10px;
+}
+
+#submit_button {
+    color: #ffffff;
+    background-color: #d92323;
+}
+
+#cancel_button {
+    display: none;
+    background-color: #ffffff;
+    border: 1px solid #aaaaaa;
+}
+
+.in_edit #cancel_button {
+    display: inline-block;
+}
+
 .in_edit input {
     animation: blink 0.8s ease-in-out;
 }
@@ -101,20 +162,8 @@
     }
 }
 
-#alias_input, #url_input {
-    display: block;
-    box-sizing: border-box;
-    width: 100%;
-}
-
-.button_group {
-    text-align: right;
-}
-
-#cancel_button {
-    display: none;
-}
-
-.in_edit #cancel_button {
+.footer a i {
     display: inline-block;
+    margin-right: 6px;
+    transform: scale(1.5);
 }

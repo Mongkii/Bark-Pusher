@@ -1,11 +1,22 @@
 const target_selector = document.querySelector('#target_selector');
-
 const send_page = document.querySelector('#send_page');
 const send_clip = document.querySelector('#send_clip'),
     clipboard_area = document.querySelector('#clipboard_area');
 const send_custom = document.querySelector('#send_custom'),
     custom_textarea = document.querySelector('#custom_textarea');
 
+// Storage 相关操作
+const getCurrentSelect = () => new Promise(resolve => {
+    chrome.storage.local.get('currentSelect', storage => {
+        resolve(storage.currentSelect);
+    })
+});
+
+const setCurrentSelect = url => {
+    chrome.storage.local.set({currentSelect: url});
+};
+
+// 页面事件
 const getOption = ({alias, url}) => {
     let option = document.createElement('option');
     option.textContent = alias;
@@ -26,6 +37,7 @@ const initialize = async () => {
     }
 };
 
+// 事件绑定
 send_page.addEventListener('click', async () => {
     const [text, url] = await new Promise(resolve => {
         chrome.tabs.query({active: true, currentWindow: true}, tab_list => {
@@ -64,8 +76,8 @@ send_custom.addEventListener('click', () => {
     }
 });
 
-target_selector.addEventListener('change',function () {
-   setCurrentSelect(this.value);
+target_selector.addEventListener('change', function () {
+    setCurrentSelect(this.value);
 });
 
 window.addEventListener('load', initialize);
