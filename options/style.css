@@ -1,8 +1,76 @@
 .wrapper {
     width: 350px;
+    margin: 15px 10px;
 }
 
-.default_item {
+#auto_copy_checkbox {
+    margin: 0;
+    vertical-align: middle;
+}
+
+.device_table {
+    width: 100%;
+    text-align: left;
+    overflow-wrap: break-word;
+    table-layout: fixed;
+    border-collapse: collapse;
+}
+
+.device_table td {
+    padding: 4px 1px;
+    border: none;
+}
+
+.device_table .alias_col, .tooltip_col {
+    width: 75px;
+}
+
+.device_table .url_col {
+    width: 200px;
+}
+
+.item_tooltip {
+    opacity: 0;
+    text-align: right;
+}
+
+.item_tooltip button {
+    box-sizing: border-box;
+    width: 20px;
+    height: 20px;
+    padding: 0;
+    margin-left: 4px;
+    background-color: #ffffff;
+    border: 1px solid #aaaaaa;
+    border-radius: 5px;
+    outline: none;
+}
+
+.item_tooltip button:active {
+    transform: scale(0.9);
+}
+
+.tool_default:hover {
+    color: orange;
+}
+
+.tool_edit:hover {
+    color: dodgerblue;
+}
+
+.tool_delete:hover {
+    color: red;
+}
+
+#device_tbody tr:hover {
+    background-color: #f3f3f3;
+}
+
+#device_tbody tr:hover .item_tooltip {
+    opacity: 1;
+}
+
+.default_item .item_alias, .default_item .item_url {
     font-weight: 700;
 }
 
@@ -10,41 +78,37 @@
     content: '[默认] ';
 }
 
-table {
-    width: 100%;
-}
-
-tr {
-    height: 50px;
-}
-
-.item_tooltip {
-    opacity: 0;
-}
-
-tr:hover {
-    background-color: rebeccapurple;
-}
-
-tr:hover .item_tooltip {
-    opacity: 1;
-}
-
-tr.default_item .tool_default {
+.default_item .tool_default {
     visibility: hidden;
 }
 
 .in_edit input {
-    animation: blink 1s ease-in-out;
+    animation: blink 0.8s ease-in-out;
 }
 
 @keyframes blink {
-    30% {
-        background-color: yellow;
+    15% {
+        background-color: #feffcb;
     }
-    100% {
+    30% {
         background-color: #ffffff;
     }
+    50% {
+        background-color: #feffcb;
+    }
+    80% {
+        background-color: #ffffff;
+    }
+}
+
+#alias_input, #url_input {
+    display: block;
+    box-sizing: border-box;
+    width: 100%;
+}
+
+.button_group {
+    text-align: right;
 }
 
 #cancel_button {

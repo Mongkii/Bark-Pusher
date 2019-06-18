@@ -1,5 +1,17 @@
 .wrapper {
     width: 350px;
+    margin: 15px 10px;
+}
+
+.target_selector_wrapper {
+    margin-bottom: 10px;
+    text-align: right;
+}
+
+#target_selector {
+    border: none;
+    border-bottom: 1px solid black;
+    outline: none;
 }
 
 .shortcuts {
@@ -25,12 +37,13 @@
     flex: 1;
     height: 200px;
     resize: vertical;
-    overflow: scroll;
+   /* overflow-y: scroll; 默认样式似乎更自然*/
 }
 
 #send_custom {
-    align-self: flex-start;
+    align-self: flex-end;
     width: 80px;
+    margin-left: 10px;
 }
 
 .footer{

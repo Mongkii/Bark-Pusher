@@ -16,7 +16,7 @@ const sendRequest = async ({text, url}, target) => {
             target = await getDefaultDevice();
         }
         if (!target) { // 原写法：if (!(target = target || await getDefaultDevice()))，改成现在这样是为了 target === '' 时能报错而非获取默认值
-            throw '尚未设置设备！';
+            throw '尚未设置目标设备！';
         }
         const arg = '?' + (url ? `url=${url}` : await isAutoCopy() ? 'automaticallyCopy=1' : '');
         fetch(target + encodeURIComponent(text) + arg);

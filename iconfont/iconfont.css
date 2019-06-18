@@ -1,0 +1,39 @@
+@font-face {
+    font-family: "iconfont";
+    src: url('iconfont.woff2?t=1560846164981') format('woff2');
+}
+
+.iconfont {
+    font-family: "iconfont" !important;
+    font-style: normal;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-computer:before {
+    content: "\e6eb";
+  }
+  
+  .icon-setup:before {
+    content: "\e728";
+  }
+  
+  .icon-task:before {
+    content: "\e732";
+  }
+  
+  .icon-undo:before {
+    content: "\e739";
+  }
+  
+  .icon-bianji:before {
+    content: "\e872";
+  }
+  
+  .icon-shanchu:before {
+    content: "\e879";
+  }
+  
+  .icon-shoucang:before {
+    content: "\e87d";
+  }
