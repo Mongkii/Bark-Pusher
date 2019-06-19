@@ -4,8 +4,7 @@
   "version": "1.0.0",
   "description": "Push content to iOS via Bark app.",
   "homepage_url": "https://github.com/Mongkii/Bark-Pusher",
-  "icons":
-  {
+  "icons": {
     "16": "img/icon.png",
     "48": "img/icon.png",
     "128": "img/icon.png"
@@ -16,10 +15,12 @@
     "default_popup": "popup/index.html"
   },
   "permissions": [
+    "*://*/*",
     "contextMenus",
     "activeTab",
     "clipboardRead",
-    "storage"
+    "storage",
+    "notifications"
   ],
   "background": {
     "persistent": false,

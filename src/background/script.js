@@ -6,12 +6,16 @@ const type = {
 
 // Storage 初始化
 chrome.runtime.onInstalled.addListener(() => {
-    chrome.storage.sync.get(['isAutoCopy', 'deviceList', 'defaultDevice'], storage => {
+    chrome.storage.sync.get(['isAutoCopy', 'shouldNotify', 'deviceList', 'defaultDevice'], storage => {
         const is_auto_copy = storage.isAutoCopy,
+            should_notify = storage.shouldNotify,
             device_list = storage.deviceList,
             default_device = storage.defaultDevice;
         if (is_auto_copy === undefined) {
             chrome.storage.sync.set({isAutoCopy: true});
+        }
+        if (should_notify === undefined) {
+            chrome.storage.sync.set({shouldNotify: true});
         }
         if (device_list === undefined || !(device_list.length > 0)) { // !(device_list.length > 0) 从而当不存在 length 属性时也会返回 true
             chrome.storage.sync.set({deviceList: [], defaultDevice: ''});
@@ -57,5 +61,5 @@ chrome.contextMenus.onClicked.addListener((event, tab) => {
         default:
             break;
     }
-    sendRequest(content);
+    pushContent(content);
 });

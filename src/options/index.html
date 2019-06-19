@@ -7,10 +7,16 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body class="wrapper">
-<div class="auto_copy_wrapper">
+<div class="checkbox_list">
     <h2 class="option_title">通用设置</h2>
-    <input type="checkbox" id="auto_copy_checkbox">
-    <label for="auto_copy_checkbox">推送文字时，自动复制到 iOS 剪贴板</label>
+    <div class="checkbox_item">
+        <input type="checkbox" class="checkbox_input" id="auto_copy_checkbox">
+        <label for="auto_copy_checkbox">推送文字时，自动复制到 iOS 剪贴板</label>
+    </div>
+    <div class="checkbox_item">
+        <input type="checkbox" class="checkbox_input" id="notify_checkbox">
+        <label for="notify_checkbox">推送完成后发送通知</label>
+    </div>
 </div>
 <h2 class="option_title">设备列表</h2>
 <table class="device_table">

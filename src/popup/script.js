@@ -52,7 +52,7 @@ send_page.addEventListener('click', async () => {
     if (text && url) {
         const content = {text, url},
             target = target_selector.value;
-        sendRequest(content, target);
+        pushContent(content, target);
     }
 });
 
@@ -63,7 +63,7 @@ send_clip.addEventListener('click', () => {
     if (text) {
         const content = {text},
             target = target_selector.value;
-        sendRequest(content, target);
+        pushContent(content, target);
     }
 });
 
@@ -72,7 +72,7 @@ send_custom.addEventListener('click', () => {
     if (text) {
         const content = {text},
             target = target_selector.value;
-        sendRequest(content, target);
+        pushContent(content, target);
     }
 });
 

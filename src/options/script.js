@@ -1,4 +1,5 @@
-const auto_copy_checkbox = document.querySelector('#auto_copy_checkbox');
+const auto_copy_checkbox = document.querySelector('#auto_copy_checkbox'),
+    notify_checkbox = document.querySelector('#notify_checkbox');
 const device_tbody = document.querySelector('#device_tbody');
 const device_form = document.querySelector('#device_form'),
     device_form_title = document.querySelector('#device_form_title'),
@@ -120,6 +121,7 @@ const initialize = async () => {
         footer.classList.add('hidden');
     }
     auto_copy_checkbox.checked = await isAutoCopy();
+    notify_checkbox.checked = await shouldNotify();
     await refreshDeviceList();
 };
 
@@ -128,13 +130,17 @@ auto_copy_checkbox.addEventListener('change', function () {
     chrome.storage.sync.set({isAutoCopy: this.checked});
 });
 
+notify_checkbox.addEventListener('change', function () {
+    chrome.storage.sync.set({shouldNotify: this.checked});
+});
+
 device_form.addEventListener('submit', async () => {
     const alias = alias_input.value.trim(),
         url = url_input.value.trim();
     if (!(alias && url)) {
         return;
     }
-    const device_info = {alias,url};
+    const device_info = {alias, url};
     if (url_before_edit === '') {
         await addDevice(device_info);
     } else {

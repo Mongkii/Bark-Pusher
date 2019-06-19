@@ -9,7 +9,11 @@
     font-weight: 700;
 }
 
-#auto_copy_checkbox {
+.checkbox_item {
+    margin-bottom: 4px;
+}
+
+.checkbox_input {
     margin: 0 2px 0 0;
     vertical-align: middle;
 }
