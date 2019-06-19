@@ -10,7 +10,6 @@
     "uglify-es": "^3.3.9"
   },
   "scripts": {
-    "test": "gulp move",
     "build": "gulp"
   }
 }

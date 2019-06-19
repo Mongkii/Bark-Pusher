@@ -31,8 +31,8 @@
 <form id="device_form">
     <h3 id="device_form_title">添加设备</h3>
     <input type="text" id="alias_input" placeholder="设备名称" required>
-    <input type="url" id="url_input" placeholder="URL 地址，形如 http://abc.com/myurl/" pattern="https?:\/\/.+\/.+\/$"
-           title="必须以反斜杠结尾" required>
+    <input type="url" id="url_input" placeholder="URL 地址，形如 http://abc.com/myurl/" pattern="^\s*https?:\/\/.+\/.+\/\s*$"
+           title="必须以 http 或 https 开头，反斜杠结尾" required>
     <div class="button_group">
         <button type="submit" id="submit_button">添加</button>
         <button type="button" id="cancel_button">取消</button>

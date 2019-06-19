@@ -113,7 +113,6 @@ const leaveEditMode = () => {
     submit_button.textContent = '添加';
     alias_input.value = '';
     url_input.value = url_before_edit = '';
-
 };
 
 const initialize = async () => {
@@ -130,7 +129,12 @@ auto_copy_checkbox.addEventListener('change', function () {
 });
 
 device_form.addEventListener('submit', async () => {
-    const device_info = {alias: alias_input.value, url: url_input.value};
+    const alias = alias_input.value.trim(),
+        url = url_input.value.trim();
+    if (!(alias && url)) {
+        return;
+    }
+    const device_info = {alias,url};
     if (url_before_edit === '') {
         await addDevice(device_info);
     } else {
