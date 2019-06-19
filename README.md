@@ -6,7 +6,17 @@
 
 ## 介绍
 
+Bark 是一款开源的 iOS app，可以推送你自定义的消息到设备上
 
+[Bark 下载地址](https://apps.apple.com/cn/app/id1403753865)
+
+[Bark 的 GitHub 页面](https://github.com/Finb/Bark)
+
+本扩展的功能就是将网页中的信息，通过 Bark 推送到 iOS 端。
+
+支持推送网址、选中文本、剪贴板、自定义文本等。
+
+支持多设备推送。
 
 ## 安装
 
