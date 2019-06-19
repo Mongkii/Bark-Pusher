@@ -117,8 +117,8 @@ const leaveEditMode = () => {
 };
 
 const initialize = async () => {
-    if (location.hash === '#fromPopup') {
-        footer.removeAttribute('hidden');
+    if (location.hash !== '#fromPopup') {
+        footer.classList.add('hidden');
     }
     auto_copy_checkbox.checked = await isAutoCopy();
     await refreshDeviceList();

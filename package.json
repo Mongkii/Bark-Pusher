@@ -1,0 +1,16 @@
+{
+  "name": "bark_pusher",
+  "version": "1.0.0",
+  "dependencies": {},
+  "devDependencies": {
+    "gulp": "^4.0.2",
+    "gulp-clean-css": "^4.2.0",
+    "gulp-htmlmin": "^5.0.1",
+    "gulp-uglify": "^3.0.2",
+    "uglify-es": "^3.3.9"
+  },
+  "scripts": {
+    "test": "gulp move",
+    "build": "gulp"
+  }
+}

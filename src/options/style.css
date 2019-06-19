@@ -3,11 +3,6 @@
     margin: 15px 10px 10px;
 }
 
-/*.auto_copy_wrapper {
-    padding-bottom: 10px;
-    border-bottom: 1px solid #cccccc;
-}*/
-
 #auto_copy_checkbox {
     margin: 0;
     vertical-align: middle;
@@ -166,4 +161,8 @@
     display: inline-block;
     margin-right: 6px;
     transform: scale(1.5);
+}
+
+.footer.hidden {
+    visibility: hidden;
 }

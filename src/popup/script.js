@@ -81,4 +81,3 @@ target_selector.addEventListener('change', function () {
 });
 
 window.addEventListener('load', initialize);
-

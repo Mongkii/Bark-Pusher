@@ -25,17 +25,17 @@ chrome.runtime.onInstalled.addListener(() => {
 chrome.runtime.onInstalled.addListener(() => {
     chrome.contextMenus.create({
         id: type.TEXT,
-        title: '发送所选文字至 Bark',
+        title: '推送所选文字至 Bark',
         contexts: ['selection'],
     });
     chrome.contextMenus.create({
         id: type.PAGE,
-        title: '发送当前页面至 Bark',
+        title: '推送当前页面至 Bark',
         contexts: ['page']
     });
     chrome.contextMenus.create({
         id: type.LINK,
-        title: '发送此链接至 Bark',
+        title: '推送此链接至 Bark',
         contexts: ['link']
     })
 });
@@ -59,5 +59,3 @@ chrome.contextMenus.onClicked.addListener((event, tab) => {
     }
     sendRequest(content);
 });
-
-
