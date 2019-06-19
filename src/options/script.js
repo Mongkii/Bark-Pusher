@@ -134,7 +134,7 @@ notify_checkbox.addEventListener('change', function () {
     chrome.storage.sync.set({shouldNotify: this.checked});
 });
 
-device_form.addEventListener('submit', async () => {
+device_form.addEventListener('submit', async event => {
     const alias = alias_input.value.trim(),
         url = url_input.value.trim();
     if (!(alias && url)) {
@@ -147,6 +147,7 @@ device_form.addEventListener('submit', async () => {
         await editDevice(url_before_edit, device_info);
         leaveEditMode();
     }
+    event.preventDefault();
     await refreshDeviceList(); // submit 事件自带的刷新网页有时不会触发，因此加入强制触发
 });
 
