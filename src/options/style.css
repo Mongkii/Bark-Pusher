@@ -120,7 +120,7 @@
 .button_group button {
     width: 70px;
     height: 30px;
-    border-radius: 10px;
+    border-radius: 8px;
 }
 
 #submit_button {

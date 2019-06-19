@@ -1,6 +1,6 @@
 button {
     height: 35px;
-    border-radius: 10px;
+    border-radius: 8px;
 }
 
 .iconfont {
@@ -50,14 +50,19 @@ button {
     opacity: 0;
 }
 
-.custom_input {
+.custom_title {
+    margin: 10px 0 6px 2px; /* 2px 的 margin-left 起到视觉对齐效果 */
+    font-size: 1.3em;
+}
+
+.custom_main {
     display: flex;
     margin-bottom: 10px;
 }
 
 #custom_textarea {
     flex: 1;
-    height: 180px;
+    height: 150px;
     padding: 5px;
     resize: vertical;
     /* overflow-y: scroll; 默认样式似乎更自然*/
