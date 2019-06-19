@@ -3,7 +3,7 @@ button {
     border-radius: 10px;
 }
 
-i {
+.iconfont {
     display: inline-block;
     margin-right: 6px;
     transform: scale(1.5); /* 使用 transform 放大而非改字号，以使 iconfont 保持垂直居中 */
