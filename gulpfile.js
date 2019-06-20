@@ -1,7 +1,5 @@
 const gulp = require('gulp'),
-    uglifyes = require('uglify-es'),
-    composer = require('gulp-uglify/composer'),
-    uglify = composer(uglifyes, console),
+    terser = require('gulp-terser'),
     cleancss = require('gulp-clean-css'),
     htmlmin = require('gulp-htmlmin');
 
@@ -9,7 +7,10 @@ gulp.task('move', () => gulp.src('src/**')
     .pipe(gulp.dest('build')));
 
 gulp.task('m-js', () => gulp.src('src/**/*.js')
-    .pipe(uglify())
+    .pipe(terser({
+            ecma:6,
+            mangle: false
+    }))
     .pipe(gulp.dest('build')));
 
 gulp.task('m-css', () => gulp.src('src/**/*.css')
