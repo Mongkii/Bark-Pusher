@@ -19,10 +19,14 @@ button {
     text-align: right;
 }
 
+.select_element_wrapper {
+    display: inline-block;
+    border-bottom: 1px solid #000000;
+}
+
 #target_selector {
+    background-color: #ffffff;
     border: none;
-    border-bottom: 1px solid black;
-    outline: none;
 }
 
 .shortcuts {

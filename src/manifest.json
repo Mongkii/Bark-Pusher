@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
   "name": "Bark Pusher",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Push content to iOS via Bark app.",
   "homepage_url": "https://github.com/Mongkii/Bark-Pusher",
   "icons": {
