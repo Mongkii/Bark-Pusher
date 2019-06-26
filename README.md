@@ -23,7 +23,7 @@ Bark 是一款开源的 iOS app，可以推送你自定义的消息到设备上�
 
 ### 在线安装（推荐）
 
-* 从 Chrome 应用商店下载（上架审核中）
+* 从 [Chrome 应用商店](https://chrome.google.com/webstore/detail/poomlolhjphfnijbbhplbggnddahgdpp/)下载
 
 ### 本地安装
 
@@ -52,5 +52,7 @@ Bark 是一款开源的 iOS app，可以推送你自定义的消息到设备上�
 * 点击界面最下方的「设置」按钮进入设置界面
 
 ## 致谢
+
+本扩展的图标中所使用的 Bark 元素，已得到 Bark 作者授权。
 
 项目使用的 iconfont 来自[阿里巴巴矢量图标库](https://www.iconfont.cn)中的「淘票票官方图标库」和「千牛图标库」。
