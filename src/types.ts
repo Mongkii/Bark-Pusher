@@ -5,6 +5,7 @@ export interface Device {
 
 export interface SyncStore {
   isAutoCopy: boolean;
+  isArchive: boolean;
   shouldNotify: boolean;
   deviceList: Device[];
   defaultDevice: Device['url'];

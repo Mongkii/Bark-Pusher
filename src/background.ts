@@ -12,20 +12,18 @@ chrome.runtime.onInstalled.addListener(() => {
   chrome.storage.sync.get((storage) => {
     const thisStorage = storage as SyncStore;
 
-    if (thisStorage.isAutoCopy === undefined) {
-      syncStore.set({ isAutoCopy: true });
-    }
-    if (thisStorage.shouldNotify === undefined) {
-      syncStore.set({ shouldNotify: true });
-    }
-
     const hasDeviceList = (thisStorage.deviceList?.length || 0) > 0;
-    if (!hasDeviceList) {
-      syncStore.set({ deviceList: [], defaultDevice: '' });
-    }
-    if (hasDeviceList && thisStorage.defaultDevice === undefined) {
-      syncStore.set({ defaultDevice: thisStorage.deviceList![0]!.url || '' });
-    }
+
+    const initStore: SyncStore = {
+      isAutoCopy: thisStorage.isAutoCopy ?? true,
+      isArchive: thisStorage.isArchive ?? false,
+      shouldNotify: thisStorage.shouldNotify ?? true,
+      deviceList: hasDeviceList ? thisStorage.deviceList : [],
+      defaultDevice: hasDeviceList
+        ? thisStorage.defaultDevice ?? (thisStorage.deviceList[0]?.url || '')
+        : '',
+    };
+    syncStore.set(initStore);
   });
 });
 

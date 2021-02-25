@@ -64,6 +64,7 @@ export const pushContent = async ({ text, url }: ContentToPush, target?: string)
     const paramsValidator: { [paramStr: string]: boolean } = {
       [`url=${url}`]: Boolean(url),
       ['automaticallyCopy=1']: !url && (await syncStore.get('isAutoCopy')),
+      ['isArchive=1']: await syncStore.get('isArchive'),
     };
 
     const validParams = Object.keys(paramsValidator)

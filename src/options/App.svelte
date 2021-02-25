@@ -57,6 +57,7 @@
 
   let isAutoCopy = true;
   let shouldNotify = true;
+  let isArchive = false;
 
   const getOnChange = (optionKey: keyof SyncStore) => (event: Event) => {
     syncStore.set({ [optionKey]: (event.target as HTMLInputElement).checked });
@@ -66,6 +67,11 @@
       value: isAutoCopy,
       onChange: getOnChange('isAutoCopy'),
       desc: '推送文字时，自动复制到 iOS 剪贴板',
+    },
+    {
+      value: isArchive,
+      onChange: getOnChange('isArchive'),
+      desc: '强制将推送写入到 iOS Bark 历史记录',
     },
     {
       value: shouldNotify,
@@ -78,6 +84,7 @@
   onMount(async () => {
     isAutoCopy = await syncStore.get('isAutoCopy');
     shouldNotify = await syncStore.get('shouldNotify');
+    isArchive = await syncStore.get('isArchive');
     await refreshDeviceList();
   });
 </script>
