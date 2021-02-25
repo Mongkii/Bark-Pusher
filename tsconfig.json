@@ -1,0 +1,16 @@
+{
+  "compilerOptions": {
+    /* Visit https://aka.ms/tsconfig.json to read more about this file */
+    "target": "ES6",
+    "types": ["svelte","chrome"], // 不手动指定 'svelte' 会导致 import App from './App.svelte' 报错
+    "removeComments": true,
+    "moduleResolution": "node",
+    "importsNotUsedAsValues": "error",
+    "strict": true,
+    "strictNullChecks": true,
+    "noUncheckedIndexedAccess": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true
+  }
+}

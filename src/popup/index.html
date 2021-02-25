@@ -1,30 +1,14 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-    <meta charset="UTF-8">
-    <link rel="stylesheet" href="../common/sharedStyle.css">
-    <link rel="stylesheet" href="../common/iconfont.css">
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <link rel="stylesheet" href="../assets/common.css">
+  <link rel="stylesheet" href="../assets/iconfont.css">
 </head>
-<body class="wrapper">
-<div class="target_selector_wrapper">
-    <label for="target_selector">目标设备</label>
-    <span class="select_element_wrapper"><select id="target_selector"></select></span>
-</div>
-<div class="shortcuts">
-    <button id="send_page"><i class="iconfont icon-computer"></i>发送页面网址</button>
-    <button id="send_clip"><i class="iconfont icon-task"></i>发送剪贴板内容</button>
-    <textarea id="clipboard_area"></textarea>
-</div>
-<h3 class="custom_title">发送自定义文字</h3>
-<div class="custom_main">
-    <textarea placeholder="输入后，点击右下角按钮发送" id="custom_textarea"></textarea>
-    <button id="send_custom">发送</button>
-</div>
-<div class="footer">
-    <a href="../options/index.html#fromPopup"><i class="iconfont icon-setup"></i>设置</a>
-</div>
-<script src="../common/sharedScript.js"></script>
-<script src="script.js"></script>
+
+<body>
+  <script src="./index.ts"></script>
 </body>
+
 </html>

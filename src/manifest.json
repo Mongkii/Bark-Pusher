@@ -1,16 +1,15 @@
 {
   "manifest_version": 2,
   "name": "Bark Pusher",
-  "version": "1.0.1",
   "description": "Push content to iOS via Bark app.",
   "homepage_url": "https://github.com/Mongkii/Bark-Pusher",
   "icons": {
-    "16": "img/icon.png",
-    "48": "img/icon.png",
-    "128": "img/icon.png"
+    "16": "assets/icon.png",
+    "48": "assets/icon.png",
+    "128": "assets/icon.png"
   },
   "browser_action": {
-    "default_icon": "img/icon.png",
+    "default_icon": "assets/icon.png",
     "default_title": "Bark Pusher",
     "default_popup": "popup/index.html"
   },
@@ -23,10 +22,11 @@
     "notifications"
   ],
   "background": {
-    "persistent": false,
-    "page": "background/index.html"
+    "scripts": [
+      "background.ts"
+    ],
+    "persistent": false
   },
-  "options_page": "options/index.html",
   "options_ui": {
     "chrome_style": false,
     "page": "options/index.html"
