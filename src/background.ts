@@ -16,7 +16,8 @@ chrome.runtime.onInstalled.addListener(() => {
 
     const initStore: SyncStore = {
       isAutoCopy: thisStorage.isAutoCopy ?? true,
-      isArchive: thisStorage.isArchive ?? false,
+      archiveOption: thisStorage.archiveOption ?? 'default',
+      pushSound: thisStorage.pushSound ?? '',
       shouldNotify: thisStorage.shouldNotify ?? true,
       deviceList: hasDeviceList ? thisStorage.deviceList : [],
       defaultDevice: hasDeviceList

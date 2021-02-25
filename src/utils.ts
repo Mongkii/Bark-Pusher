@@ -61,10 +61,15 @@ export const pushContent = async ({ text, url }: ContentToPush, target?: string)
       throw '没有目标设备，请先在设置中添加！';
     }
 
+    const archiveOption = await syncStore.get('archiveOption');
+    const pushSound = await syncStore.get('pushSound');
+
     const paramsValidator: { [paramStr: string]: boolean } = {
       [`url=${url}`]: Boolean(url),
       ['automaticallyCopy=1']: !url && (await syncStore.get('isAutoCopy')),
-      ['isArchive=1']: await syncStore.get('isArchive'),
+      ['isArchive=1']: archiveOption === 'always',
+      ['isArchive=0']: archiveOption === 'never',
+      [`sound=${pushSound}`]: Boolean(pushSound),
     };
 
     const validParams = Object.keys(paramsValidator)

@@ -3,9 +3,12 @@ export interface Device {
   url: string;
 }
 
+export type ArchiveOption = 'default' | 'never' | 'always';
+
 export interface SyncStore {
   isAutoCopy: boolean;
-  isArchive: boolean;
+  archiveOption: ArchiveOption;
+  pushSound: string;
   shouldNotify: boolean;
   deviceList: Device[];
   defaultDevice: Device['url'];

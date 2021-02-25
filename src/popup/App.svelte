@@ -4,9 +4,6 @@
   import type { Device } from '../types';
 
   let sendTarget: Device['url'] = '';
-  const handleSelectBlur = (event: Event) => {
-    localStore.set({ currentSelect: (event.target as HTMLSelectElement).value });
-  };
 
   const sendCurPage = async () => {
     const [text, url] = await new Promise<[string | undefined, string | undefined]>((resolve) => {
@@ -47,13 +44,9 @@
 </script>
 
 <div class="send-target">
-  <label for="target-select">目标设备</label>
-  <span class="select-ele-wrapper">
-    <select
-      id="target-select"
-      bind:value={sendTarget}
-      on:blur={handleSelectBlur}
-    >
+  <span>目标设备</span>
+  <span class="select-wrapper">
+    <select bind:value={sendTarget} on:blur={() => localStore.set({ currentSelect: sendTarget })}>
       {#each deviceList as { alias, url }}
         <option value={url}>{alias}</option>
       {/each}
@@ -102,13 +95,11 @@
     text-align: right;
   }
 
-  .select-ele-wrapper {
-    display: inline-block;
+  .select-wrapper {
     border-bottom: 1px solid #000000;
   }
-
-  #target-select {
-    background-color: #ffffff;
+  select {
+    background-color: transparent;
     border: none;
   }
 
