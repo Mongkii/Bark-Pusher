@@ -6,26 +6,27 @@ const fs = require('fs');
 const path = require('path');
 const archiver = require('archiver');
 
-const getPath = (relativePath) => path.join(__dirname, relativePath);
-const PACKAGE_PATH = getPath('../package.json');
-const RELEASE_PATH = getPath('../releases');
-const DIST_PATH = getPath('../dist');
+const SOURCE_PATH = path.join(__dirname, '../dist');
+const TARGET_PATH = path.join(__dirname, '../releases');
 
-const packageStr = fs.readFileSync(PACKAGE_PATH, 'utf-8');
-const packageObj = JSON.parse(packageStr);
-const { name, version } = packageObj;
+const { name, version } = require('../package.json');
 const fileName = `${name}-${version}.zip`;
 
-if (!fs.existsSync(RELEASE_PATH)) {
-  fs.mkdirSync(RELEASE_PATH);
+if (!fs.existsSync(SOURCE_PATH)) {
+  console.error('未找到打包源！');
+  return;
 }
 
-const writeStream = fs.createWriteStream(path.join(RELEASE_PATH, fileName));
+if (!fs.existsSync(TARGET_PATH)) {
+  fs.mkdirSync(TARGET_PATH);
+}
+
+const writeStream = fs.createWriteStream(path.join(TARGET_PATH, fileName));
 writeStream.on('close', () => {
   console.log(`已打包为 ${fileName}`);
 });
 
 const archive = archiver('zip');
 archive.pipe(writeStream);
-archive.directory(DIST_PATH, false);
+archive.directory(SOURCE_PATH, false);
 archive.finalize();
