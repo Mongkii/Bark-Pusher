@@ -54,7 +54,7 @@
   </div>
   <div class="option-item">
     <label>
-      推送铃声
+      iOS 端推送铃声
       <input
         type="text"
         placeholder="默认铃声"
