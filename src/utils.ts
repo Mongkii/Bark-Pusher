@@ -49,7 +49,13 @@ const storeFuncFactory: StoreFuncFactory = (type: 'local' | 'sync'): any => {
 export const localStore = storeFuncFactory('local');
 export const syncStore = storeFuncFactory('sync');
 
-export const pushContent = async ({ text, url }: ContentToPush, target?: string) => {
+export const EMPTY_GROUP = '';
+
+export const pushContent = async (
+  { text, url }: ContentToPush,
+  target?: string,
+  group?: string
+) => {
   try {
     // 没有写成 `if (!(target = target || await getStorage('defaultDevice')))`
     // 是为了 target === '' 时能报错而非获取默认值
@@ -61,6 +67,13 @@ export const pushContent = async ({ text, url }: ContentToPush, target?: string)
       throw '没有目标设备，请先在设置中添加！';
     }
 
+    if (group === undefined) {
+      const shouldUseLastSelectedGroup = await syncStore.get('rememberGroup');
+      group = shouldUseLastSelectedGroup
+        ? (await localStore.get('currentGroup')) || EMPTY_GROUP
+        : EMPTY_GROUP;
+    }
+
     const archiveOption = await syncStore.get('archiveOption');
     const pushSound = await syncStore.get('pushSound');
 
@@ -70,6 +83,7 @@ export const pushContent = async ({ text, url }: ContentToPush, target?: string)
       ['isArchive=1']: archiveOption === 'always',
       ['isArchive=0']: archiveOption === 'never',
       [`sound=${pushSound}`]: Boolean(pushSound),
+      [`group=${group}`]: Boolean(group),
     };
 
     const validParams = Object.keys(paramsValidator)

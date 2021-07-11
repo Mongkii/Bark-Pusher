@@ -3,12 +3,16 @@
   import { syncStore } from '../utils';
   import type { SyncStore } from '../types';
 
-  type Options = Pick<SyncStore, 'isAutoCopy' | 'shouldNotify' | 'archiveOption' | 'pushSound'>;
+  type Options = Pick<
+    SyncStore,
+    'isAutoCopy' | 'shouldNotify' | 'archiveOption' | 'pushSound' | 'rememberGroup'
+  >;
   let options: Options = {
     isAutoCopy: true,
     shouldNotify: true,
     archiveOption: 'default',
     pushSound: '',
+    rememberGroup: false,
   };
 
   const updateOption = (optionKey: keyof Options) => {
@@ -16,7 +20,13 @@
   };
 
   onMount(async () => {
-    options = await syncStore.get(['isAutoCopy', 'shouldNotify', 'archiveOption', 'pushSound']);
+    options = await syncStore.get([
+      'isAutoCopy',
+      'shouldNotify',
+      'archiveOption',
+      'pushSound',
+      'rememberGroup',
+    ]);
   });
 </script>
 
@@ -60,6 +70,16 @@
         type="checkbox"
         bind:checked={options.shouldNotify}
         on:change={() => updateOption('shouldNotify')}
+      />
+    </label>
+  </div>
+  <div class="option-item">
+    <label>
+      右键菜单及弹窗推送时，自动选择上一次的分组
+      <input
+        type="checkbox"
+        bind:checked={options.rememberGroup}
+        on:change={() => updateOption('rememberGroup')}
       />
     </label>
   </div>

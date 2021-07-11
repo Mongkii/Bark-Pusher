@@ -1,9 +1,16 @@
 <script lang="ts">
   import { onMount } from 'svelte';
-  import { localStore, syncStore, pushContent } from '../utils';
+  import { localStore, syncStore, pushContent, EMPTY_GROUP } from '../utils';
   import type { Device } from '../types';
 
+  const EMPTY_GROUP_NAME = '默认';
+
   let sendTarget: Device['url'] = '';
+  let sendGroup = EMPTY_GROUP;
+
+  type PushContent = typeof pushContent;
+  const pushMsg = (msg: Parameters<PushContent>[0]): ReturnType<PushContent> =>
+    pushContent(msg, sendTarget, sendGroup);
 
   const sendCurPage = async () => {
     const [text, url] = await new Promise<[string | undefined, string | undefined]>((resolve) => {
@@ -13,7 +20,7 @@
       });
     });
     if (text && url) {
-      pushContent({ text, url }, sendTarget);
+      pushMsg({ text, url });
     }
   };
 
@@ -23,7 +30,7 @@
     document.execCommand('paste');
     const text = String(clipboardTextArea.value).trim();
     if (text) {
-      pushContent({ text }, sendTarget);
+      pushMsg({ text });
     }
   };
 
@@ -31,27 +38,45 @@
   const sendCustomText = () => {
     const text = textAreaValue.trim();
     if (text) {
-      pushContent({ text }, sendTarget);
+      pushMsg({ text });
     }
   };
 
   let deviceList: Device[] = [];
+  let msgGroups: string[] = [];
 
   onMount(async () => {
     deviceList = await syncStore.get('deviceList');
     sendTarget = (await localStore.get('currentSelect')) || deviceList[0]?.url || '';
+
+    msgGroups = [EMPTY_GROUP, ...(await syncStore.get('msgGroups'))];
+    sendGroup = (await syncStore.get('rememberGroup'))
+      ? (await localStore.get('currentGroup')) || EMPTY_GROUP
+      : EMPTY_GROUP;
   });
 </script>
 
-<div class="send-target">
-  <span>目标设备</span>
-  <span class="select-wrapper">
-    <select bind:value={sendTarget} on:blur={() => localStore.set({ currentSelect: sendTarget })}>
-      {#each deviceList as { alias, url }}
-        <option value={url}>{alias}</option>
-      {/each}
-    </select>
-  </span>
+<div class="send-option-wrapper">
+  <div class="send-option">
+    <span>目标分组</span>
+    <span class="select-wrapper">
+      <select bind:value={sendGroup} on:blur={() => localStore.set({ currentGroup: sendGroup })}>
+        {#each msgGroups as group}
+          <option value={group}>{group === EMPTY_GROUP ? EMPTY_GROUP_NAME : group}</option>
+        {/each}
+      </select>
+    </span>
+  </div>
+  <div class="send-option">
+    <span>目标设备</span>
+    <span class="select-wrapper">
+      <select bind:value={sendTarget} on:blur={() => localStore.set({ currentSelect: sendTarget })}>
+        {#each deviceList as { alias, url }}
+          <option value={url}>{alias}</option>
+        {/each}
+      </select>
+    </span>
+  </div>
 </div>
 <div class="shortcuts">
   <button class="send-page" on:click={sendCurPage}>
@@ -90,9 +115,19 @@
     transform: scale(1.5); /* 使用 transform 放大而非改字号，以使 iconfont 保持垂直居中 */
   }
 
-  .send-target {
+  .send-option-wrapper {
+    display: flex;
+    justify-content: flex-end;
     margin-bottom: 10px;
+  }
+
+  .send-option {
+    flex: none;
     text-align: right;
+
+    + * {
+      margin-left: 10px;
+    }
   }
 
   .select-wrapper {

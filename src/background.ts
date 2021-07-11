@@ -19,6 +19,7 @@ chrome.runtime.onInstalled.addListener(() => {
       archiveOption: thisStorage.archiveOption ?? 'default',
       pushSound: thisStorage.pushSound ?? '',
       shouldNotify: thisStorage.shouldNotify ?? true,
+      rememberGroup: thisStorage.rememberGroup ?? false,
       deviceList: hasDeviceList ? thisStorage.deviceList : [],
       defaultDevice: hasDeviceList
         ? thisStorage.defaultDevice ?? (thisStorage.deviceList[0]?.url || '')
