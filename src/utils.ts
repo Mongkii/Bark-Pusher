@@ -74,16 +74,17 @@ export const pushContent = async (
         : EMPTY_GROUP;
     }
 
+    url = url || '';
     const archiveOption = await syncStore.get('archiveOption');
     const pushSound = await syncStore.get('pushSound');
 
     const paramsValidator: { [paramStr: string]: boolean } = {
-      [`url=${url}`]: Boolean(url),
+      [`url=${encodeURIComponent(url)}`]: Boolean(url),
       ['automaticallyCopy=1']: !url && (await syncStore.get('isAutoCopy')),
       ['isArchive=1']: archiveOption === 'always',
       ['isArchive=0']: archiveOption === 'never',
       [`sound=${pushSound}`]: Boolean(pushSound),
-      [`group=${group}`]: Boolean(group),
+      [`group=${encodeURIComponent(group)}`]: Boolean(group),
     };
 
     const validParams = Object.keys(paramsValidator)
