@@ -1,12 +1,14 @@
 <script lang="ts">
   import OptionList from './OptionList.svelte';
   import DeviceList from './DeviceList.svelte';
+  import MsgGroupList from './MsgGroupList.svelte';
 
   const isFromPopup = location.hash === '#fromPopup';
 </script>
 
 <OptionList />
 <DeviceList />
+<MsgGroupList />
 <div class="footer" class:hidden={!isFromPopup}>
   <a href="/popup/index.html"><i class="iconfont icon-undo" />返回</a>
 </div>

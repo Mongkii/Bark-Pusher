@@ -12,6 +12,7 @@ export interface SyncStore {
   shouldNotify: boolean;
   deviceList: Device[];
   defaultDevice: Device['url'];
+  msgGroups: string[];
 }
 
 export interface LocalStore {

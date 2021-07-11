@@ -23,6 +23,7 @@ chrome.runtime.onInstalled.addListener(() => {
       defaultDevice: hasDeviceList
         ? thisStorage.defaultDevice ?? (thisStorage.deviceList[0]?.url || '')
         : '',
+      msgGroups: thisStorage.msgGroups || [],
     };
     syncStore.set(initStore);
   });
