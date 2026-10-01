@@ -1,3 +1,8 @@
+> [!IMPORTANT]
+> 由于本人已很少用到 Bark，该扩展不再更新维护。
+> 
+> 你可以在 Chrome 商店找到很多优秀的同类作品，作为替代。例如 [Bark Sender](https://chromewebstore.google.com/detail/bark-sender/nkafiiklocomjnjdigkojieghpplofcm)
+
 # Bark Pusher
 
 > 一个将网页内容推送到 Bark 的 Chrome 扩展。
